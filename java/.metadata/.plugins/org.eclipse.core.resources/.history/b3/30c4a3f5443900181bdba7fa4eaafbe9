@@ -1,0 +1,39 @@
+package edu.java.spring.jdbc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.derby.iapi.store.access.conglomerate.TransactionManager;
+import org.apache.derby.iapi.store.raw.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class JdbcApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		StudentJdbcDAO jdbc = (StudentJdbcDAO) context.getBean("studentJdbcDAO");
+		//TransactionManager jdbc= (TransactionManager) context.getBean("transactionManager");
+//		System.out.println(jdbc);
+//		jdbc.insert("tran van A", 24);
+//		jdbc.insert("nguyen van B", 35);
+//		System.out.println("total student is " + jdbc.totalRecord());
+//		jdbc.loadStudent("van").forEach(student -> System.out.println(student));
+		jdbc.save("Tran thi A", 23);
+		
+		List<Student> students = new ArrayList<Student>();
+		students.add(new Student("tran thi A", 17));
+		students.add(new Student("le van L", 20));
+		students.add(new Student("phan thi Z", 25));
+
+		int[] values = jdbc.add(students);
+		for (int i = 0; i < values.length; i++) {
+			System.out.println("add record" + i + ":" + (values[i] == 0 ? "failed" : "success"));
+
+		
+		}
+		System.out.println("total student is 111   " + jdbc.totalRecord());
+	}
+
+}

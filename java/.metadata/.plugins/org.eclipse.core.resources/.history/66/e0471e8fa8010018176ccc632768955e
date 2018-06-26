@@ -1,0 +1,16 @@
+package bai6;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class FeatureExampleTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		CallableSample callableSample = new CallableSample();
+		ExecutorService executor = Executors.newScheduledThreadPool(1);
+		
+	}
+
+}

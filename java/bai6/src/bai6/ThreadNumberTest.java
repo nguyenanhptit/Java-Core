@@ -1,0 +1,26 @@
+package bai6;
+
+public class ThreadNumberTest {
+	public static void main(String[] args) {
+		PrintNumber number = new PrintNumber();
+		Thread thread = new Thread(number);
+		thread.setName("Hanoi_Thread");
+		thread.setName("FSoft_Thread");
+//		thread.setDaemon(true);
+		thread.start();
+//		System.out.println(" main thread say hello");
+//		System.out.println(" main thread say goodbye");
+		// while (thread.isAlive()) {
+		// if (number.getNumber() % 15 == 0) {
+		// number.setAlive(false);
+		// try {
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// }
+		// }
+	}
+}

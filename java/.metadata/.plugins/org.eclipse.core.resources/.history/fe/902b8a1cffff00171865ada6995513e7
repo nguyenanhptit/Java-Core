@@ -1,0 +1,72 @@
+ package bai6;
+
+public class PrintNumber implements Runnable {
+	private int number = 1;
+	private boolean alive = true;
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+	public void run()  {
+		Thread current = Thread.currentThread();
+		
+		while (number<10) {
+			number++;
+			System.out.println(current.getName() + "number is \"" + number + "\"");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println(current.getName() + " stoped");
+	}
+		//		while(number<30) {
+//			number++;
+//			System.out.println(current.getName() + "number is \"" + number + "\"");
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				System.out.println("");
+//			}
+//			if(number%10==0)break;
+//	}
+//		System.out.println(current.getName() + " stoped");
+//			
+//		}
+	
+
+
+		
+//		Thread thread = new Thread((Runnable) number);
+//		thread.setName("Hanoi_Thread");
+//		thread.start();
+//		while (thread.isAlive()) {
+//			if (number.getNumber() % 10 == 0) {
+//				number.setAlive(false);
+//				Thread.sleep(1000);
+//			}
+//
+		}
+	
+//	public class ThreadNumberTes{
+//		public void main(String[] args) {
+//			Thread thread = new Thread();
+//			thread.setName("Hanoi_Thread");
+//			thread.setName("FSoft_Thread");
+//			thread.setDaemon(true);
+//			thread.start();
+//			System.out.println(" main thread say hello");
+//			System.out.println(" main thread say goodbye");
+//
+//	 
+//				}
+//	}
+//	}

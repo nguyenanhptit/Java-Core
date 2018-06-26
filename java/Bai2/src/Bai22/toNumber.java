@@ -1,0 +1,25 @@
+package Bai22;
+
+import java.text.NumberFormat;
+
+public class toNumber {
+
+	public static int toNumber( String value) {
+		try {
+			Integer integer = new Integer(value);
+			return integer.intValue();
+		}
+		catch (NumberFormatException e) {
+			System.out.println("Co loi ep kieu");
+			e.printStackTrace();
+		}
+		return -5;
+	}
+	public static void main(String[] args) {
+
+		int number =  toNumber("34");
+		System.out.println("number="+ number);
+		number = toNumber("jj");
+		System.out.println("number="+ number);
+	}
+}

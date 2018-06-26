@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- <bean id="helloJavaClazz" class="edu.java.spring.HelloClazz" init-method="initMessage" 
+		destroy-method="release"> <property name="message" value="Welcome to Java 
+		Clazz" /> </bean> -->
+	<!-- <bean id="helloJavaClazz" class="edu.java.spring.HelloClazz" scope="singleton"> 
+		<property name="message" value="Welcome to Java Clazz" /> </bean> -->
+	<!-- <bean id="helloJavaClazz" class="edu.java.spring.HelloClazz" scope="prototype"> 
+		<property name="message" value="Welcome to Java Clazz" /> </bean> -->
+	<!-- <bean id="helloJavaClazz" class="edu.java.spring.HelloClazz" init-method="initMessage" 
+		> <constructor-arg type="int" value="5"/> <property name="message" value="Welcome 
+		to Java Clazz" /> </bean> -->
+	<!-- property ghi de constructor -->
+	<!-- <bean id="helloJavaClazz2" class="edu.java.spring.HelloClazz" init-method="initMessage" 
+		> <constructor-arg ref="helloJavaClazz" /> </bean> -->
+
+	<!-- <bean id="helloJavaClazz2" class="edu.java.spring.HelloClazz"> <property 
+		name="message" value="Hello Sub Bean!" /> </bean> <bean class="edu.java.spring.InitSampleBean" 
+		/> <bean id="helloWorld" class="edu.java.spring.HelloWorld" parent="helloJavaClazz" 
+		/> -->
+
+	<!-- <bean id="sampleTemplate" abstract="true"> <property name="message" 
+		value="Teamplate say Hello!" /> </bean> <bean id="helloWorld" class="edu.java.spring.HelloWorld" 
+		parent="helloJavaClazz" /> -->
+	<bean id="helloWorld" class="edu.java.spring.HelloWorld">
+		<constructor-arg type="java.lang.String" value="thuan" />
+		
+
+	</bean>
+</beans>
+

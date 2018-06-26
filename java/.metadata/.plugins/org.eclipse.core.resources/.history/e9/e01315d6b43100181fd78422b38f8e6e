@@ -1,0 +1,47 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
+import javax.servlet.AsyncContext;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(urlPatterns = { "/synch" }, asyncSupported = true)
+public class AsynchServlet extends HttpServlet {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		final AsyncContext ctx = req.startAsync();
+		ctx.setTimeout(60 * 1000);
+
+		ctx.start(new Runnable() {
+
+			@Override
+			public void run() {
+
+				try {
+					Writer writer = ctx.getResponse().getWriter();
+					//writer.write("hello Async");
+					URL obj = new URL("http://www.google.com.vn");
+					URLConnection con = (HttpURLConnection) obj.openConnection();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+					String line = null;
+					while ((line = reader.readLine()) != null) {
+						writer.write(line);
+					}
+					ctx.complete();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+
+	}
+}

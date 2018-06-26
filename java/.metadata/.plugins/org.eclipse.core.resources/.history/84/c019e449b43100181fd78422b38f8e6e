@@ -1,0 +1,47 @@
+package src.main.java;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+
+public class GZipServletResponseWrapper extends HttpServletResponseWrapper{
+	private GzipServletOutputStream stream=null;
+	private PrintWriter writer=null;
+	public GZipServletResponseWrapper(HttpServletResponse response) {
+		super(response);
+		// TODO Auto-generated constructor stub
+	}
+	public void flushBuffer() throws IOException{
+		if(writer != null) writer.flush();
+		stream.flush();
+	}
+	@Override
+	public ServletOutputStream getOutputStream() throws IOException {
+		// TODO Auto-generated method stub
+		if(stream!= null)
+//		return super.getOutputStream();
+		return stream;
+		stream= new GzipServletOutputStream(getResponse().getOutputStream());
+		return stream;
+	}
+	public PrintWriter getWriter() {
+		if(writer==null) {
+			try {
+				stream= new GzipServletOutputStream(getResponse().getOutputStream());
+				String encoding = getResponse().getCharacterEncoding();
+				writer= new PrintWriter(new OutputStreamWriter(stream, encoding));
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		return writer;
+	}
+	
+}

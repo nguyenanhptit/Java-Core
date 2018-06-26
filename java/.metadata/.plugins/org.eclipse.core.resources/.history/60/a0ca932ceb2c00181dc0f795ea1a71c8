@@ -1,0 +1,31 @@
+package edu.java.web;
+
+import java.io.IOException;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(value="/count", name="count-servlet")
+public class Hitcounter extends HttpServlet {
+	private int hitCount;
+
+	public void init() {
+		hitCount = 0;
+	}
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		hitCount++;
+		resp.setContentType("text/html");
+		try {
+			resp.getWriter().println("<html>");
+			resp.getWriter().println("<br>Hit count = "+ hitCount);
+			resp.getWriter().println("</html>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

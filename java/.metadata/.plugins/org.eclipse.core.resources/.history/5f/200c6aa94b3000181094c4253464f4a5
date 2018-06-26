@@ -1,0 +1,9 @@
+package edu.java.spring;
+
+import com.sun.xml.internal.ws.api.message.Message;
+
+public class HelloClazz {
+	String message;
+	public void setMessage() {this.message= message;}
+	public void printMessage() {System.out.println("your message: "+ message);}
+}

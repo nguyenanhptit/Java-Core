@@ -1,0 +1,21 @@
+package Bai22;
+
+public class ThrowableExample {
+public static int toNumber ( String value) throws SaiSoException{
+	try {
+		Integer interger = new Integer(value);
+		return integer.intValue();
+	}
+	catch (NumberFormatException e) {
+	System.out.println("loi");
+}
+}
+public static void main(String[] args) {
+	try {
+		System.out.println("number= "+ toNumber(args[0]));		
+	}
+	catch (SaiSoException e) {
+		System.err.println(e.getMessage());
+	}
+}
+}

@@ -1,0 +1,47 @@
+package src.main.java;
+
+import java.io.PrintWriter;
+
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
+import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@ServletSecurity(@HttpConstraint(transportGuarantee = TransportGuarantee.CONFIDENTIAL, rolesAllowed = { "read" }))
+@WebServlet(value = "/html", name = "html-servlet")
+public class HtmlPageServlet extends HttpServlet {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		try {
+			doGet(req, resp);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		PrintWriter writer;
+		try {
+
+			writer = resp.getWriter();
+			writer.println("<html><head><title> wellcome to our website</title></head>");
+			writer.println("<body><h1>Student</h1>");
+			writer.println("<table border=" + 1 + ">");
+			writer.print("<tr>");
+			writer.println("<th>#</th>");
+			writer.println("<th>name</th>");
+			writer.print("</tr>");
+			writer.print("<tr>");
+			writer.println("<td>1</td>");
+			writer.println("<td>AAA</td>");
+			writer.print("</tr>");
+			writer.print("</body>");
+			writer.println("</html>");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+}

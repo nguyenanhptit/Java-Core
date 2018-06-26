@@ -1,0 +1,63 @@
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import javax.servlet.annotation.WebServlet;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.concurrent.FutureCallback;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
+
+@WebServlet(urlPatterns = { "/synch" })
+public class AsyncHttpClientExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 CloseableHttpAsyncClient httpclient = HttpAsyncClients.createDefault();
+		 httpclient.start();
+		 HttpGet req = new HttpGet("http://localhost:8080/test/synch");
+		 httpclient.execute(req, new FutureCallback<HttpResponse>() {
+			
+			@Override
+			public void failed(Exception arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void completed(HttpResponse resp) {
+				// TODO Auto-generated method stub
+				try {
+					InputStream stream = resp.getEntity().getContent();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+					String line = null;
+					while ((line = reader.readLine()) != null) {
+						System.out.println(line);
+					}
+				
+			
+			 int counter=1;
+			 while(counter<10) {
+				 System.out.println("main thread is running" + counter);
+				 Thread.sleep(1000);
+				 counter++;
+			 }
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+				
+			}
+			@Override
+			public void cancelled() {
+				// TODO Auto-generated method stub
+				
+			}
+		
+	});
+}
+}
